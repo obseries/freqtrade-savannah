@@ -226,7 +226,7 @@ class Savannah(IStrategy):
             logger.info(f"{pair} trade_expired at {current_profit*100}")
             return "trade_expired"
         
-        # liquidation protection
+        #TODO liquidation protection
         
 
 
