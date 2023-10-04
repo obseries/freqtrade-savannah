@@ -28,7 +28,10 @@ class Savannah(IStrategy):
 
     timeframe = '5m'
 
-    process_only_new_candles = True
+    # TODO verificare se impostarlo a False, sembra che faccia le operazioni solo ogni 5 minuti
+    #process_only_new_candles = True
+    process_only_new_candles = False
+    
     startup_candle_count = 20
 
     order_types = {
@@ -89,6 +92,22 @@ class Savannah(IStrategy):
     sell_deadfish_volume_factor = DecimalParameter(1, 2.5, default=2.45, space='sell', optimize=is_optimize_deadfish)
 
     sell_fastx = IntParameter(50, 100, default=64, space='sell', optimize=True)
+
+    plot_config = {
+        'main_plot': {
+            'EWO': {},
+            'ema_8': {'color': 'red'},
+            'ema_16': {'color': 'white'},
+            'sma_15': {'color': 'yellow'},
+        },
+        'subplots': {
+            "RSI": {
+                'rsi': {'color': 'yellow'},
+                'rsi_fast': {'color': 'red'},
+                'rsi_slow': {'color': 'blue'},
+            }
+        }
+    }
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
