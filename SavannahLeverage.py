@@ -9,16 +9,9 @@ from freqtrade.strategy.interface import IStrategy
 from pandas import DataFrame
 from freqtrade.strategy import DecimalParameter, IntParameter
 from functools import reduce
+from Savannah import Savannah
 
 logger = logging.getLogger(__name__)
-
-def ewo(dataframe, ema_length=5, ema2_length=35):
-    #df = dataframe.copy()
-    df = dataframe
-    ema1 = ta.EMA(df, timeperiod=ema_length)
-    ema2 = ta.EMA(df, timeperiod=ema2_length)
-    emadif = (ema1 - ema2) / df['low'] * 100
-    return emadif
 
 
 class SavannahLeverage(Savannah):
